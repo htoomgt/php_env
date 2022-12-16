@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  bptopup:
+    # restart: always
+    build:
+      context: ./
+    ports:
+      - 8100:8000
+    volumes:
+      - ./:/topup-app/
+    networks:
+     - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+        driver: default
+        config:
+            - subnet: "172.21.0.0/24"
+              gateway: "172.21.0.1"
